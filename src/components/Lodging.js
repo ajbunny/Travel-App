@@ -13,7 +13,7 @@ export default function Lodging() {
     const [lodge, setLodge] = useState([])
     useEffect(() => {
         getLodgesss(id)// SHOULD be grabbing from the lodging "api"
-        .then(res => setLodge(res.data))
+        .then(res => setLodge(res.lodge))
     }, [])
 
     const deleteLodge= () => {

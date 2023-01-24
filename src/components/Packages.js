@@ -6,21 +6,54 @@ import { getLodgesss, getLocationsss, getAttractionsss } from "../services/booki
 export default function Packages() {
     const { id } = useParams()
     const nav = useNavigate()
-    const [data, setData] =useState({null})
-}
+    const [pack, setPack] =useState({})
 
+//NOT SURE WHAT THIS DOES BUT WE'RE GONNA TRY IT
+    const searchAttract = (e) => {
+        //e
+        const userPackage = {name: e.target.name.value,
+        address: e.target.address.value, price: e.target.price.value}
+        getAttractionsss(userPackage)
+        nav('/')
+    }
+    const searchLocation = (e) => {
+        const userPackage = {location: e.target.Location.value,attractions: e.target.attractions.value,lodging: e.target.lodging.value
+        }
+        getLocationsss(userPackage)
+        nav('/')
+    }
+    const searchLodging = (e) => {
+        const userPackage = {name: e.target.name.value,
+            address: e.target.address.value, price: e.target.price.value}
+        getLodgesss(userPackage)
+        nav('/')
+    }
 //DAZED AND CONFUSED....DONT KNOW WHAT ANY OF THIS MEANS
+//#region 
+//LOCATION DATA
 useEffect(() => {
-    getTodo(id)// getting the todo that matches this is
-    .then(res => setData(res.data))
+    getLocationsss(id)// getting the todo that matches this is
+    .then(res => setPack(res.pack))
 }, [])
+//LODGING DATA
+useEffect(() => {
+    getLodgesss(id)// getting the todo that matches this is
+    .then(res => setPack(res.pack))
+}, [])
+// ATTRACTIONS DATA
+useEffect(() => {
+    getAttractionsss(id)// getting the todo that matches this is
+    .then(res => setPack(res.pack))
+}, [])
+//#endregion
 
 //NEED TO CREATE FORM FOR PACKAGE...BUT HOOOWW?
+//update: ATTEMPTED PACKAGE FORM BUT NOT SURE IT'S RIGHT
 return (
     <div>
-        <form onSubmit={search}>
+        <form onSubmit={searchAttract}>
             Location: <select>
-                <option value="" disabled selected hidden> Select a  Location</option>
+            <option value="" disabled selected hidden> Select a  Location</option>
             <option value="Spain">Spain</option>
 //         <option value="Kenya">Kenya</option>
 //         <option value="Egypt">Egypt</option>
@@ -37,15 +70,13 @@ return (
             Lodging: <select>
             <option value="" disabled selected hidden> Select Loddging</option>
             </select>
+            
+            {/* DO I NEED TO CREATE A NEW ROUTE FOR THIS IN MY BOOKING-API??? 
+            <button onClick={deleteuserPackage}>Delete</button> */}
+            <button onClick={() => {nav('/')}}>Main</button>
         </form>
     </div>
 )
+}
 
 
-
-// Category: <select name="category">
-//         <option value="" disabled selected hidden>Select a Category...</option>
-//         <option value="Book">Book</option>
-//         <option value="Series">Series</option>
-//         <option value="Movie">Movie</option>
-//         </select> <br />

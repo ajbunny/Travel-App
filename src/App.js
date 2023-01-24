@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import Lodging from './components/Lodging';
-import './App.css';
-
+import Locations from './components/Locations';
+import Attractions from './components/Attractions';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import './App.css';
+import Packages from './components/Packages';
+
 
 function App() {
   return (
@@ -12,10 +15,11 @@ function App() {
 
       <Router>
         <Routes>
-          <Route path='/'element={<Lodging />}/>
-            
-        
-          
+          {/* <h3> Location:</h3><Route path='/locations'element={<Locations />}/>
+          <h3>Lodging:</h3><Route path='/lodging'element={<Lodging />}/>
+          <h3>Attractions</h3><Route path='/attract'element={<Attractions />}/>
+          <h3>Packages </h3><Route path='/package'element={<Packages />}/> */}
+                            
         </Routes>
       </Router>
 
